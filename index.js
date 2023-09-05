@@ -22,5 +22,4 @@ function toggleSwitchTransformFunction() {
         document.body.classList.remove("dark-mode")
     }
 
-    console.log("HELLO WORLD Added By Hanzilla Naved")
 }
