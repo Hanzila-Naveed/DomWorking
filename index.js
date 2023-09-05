@@ -22,5 +22,5 @@ function toggleSwitchTransformFunction() {
         document.body.classList.remove("dark-mode")
     }
 
-
+    console.log("HELLO WORLD")
 }
