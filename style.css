@@ -1,0 +1,32 @@
+toggleButton {
+    width: 25px;
+    min-width: 30px;
+    display: block;
+    padding: 2px;
+    border: 1px black solid;
+    border-radius: 30px;
+    transition: 0.5s;
+}
+
+toggleSwitchCircle {
+    display: block;
+    width: 10px;
+    height: 15px;
+    border: 1px black solid;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+
+div toggleButton {
+    float: right;
+}
+.dark-mode {
+    background-color: black;
+    color: white;
+}
+.body{
+    background-color: white;
+    color: black;
+}
+
