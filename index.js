@@ -26,23 +26,6 @@ function toggleSwitchTransformFunction() {
 
 }
 
-// allQuestions.forEach(function(item, index) {
-//
-//     console.log(item.question);
-//     let count=0
-//     while(count < item.options.length){
-//         console.log(item.options[count])
-//         count++;
-//     }
-// });
-// for (const item of allQuestions) {
-//     console.log(item.question);
-//     let count = 0
-//     while(count< item.options.length){
-//         console.log(item.options[count])
-//         count++;
-//     }
-// }
 let allQuestions=[
     {
         id:1,
@@ -60,20 +43,17 @@ let allQuestions=[
 ]
 let questionIndex = 0;
 function showQuestion() {
-    let question = document.getElementById("questions");
-    let select= document.getElementById("options");
+    const question = document.getElementById("questions");
+    const select= document.getElementById("options");
     question.innerHTML = allQuestions[questionIndex].question;
-    let count = 0
     select.innerHTML=""
-    while(count< allQuestions[questionIndex].options.length){
-        let opt=allQuestions[questionIndex].options[count]
-        select.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
-        count++;
+for(const item of allQuestions[questionIndex].options){
+    select.innerHTML += "<option value=\"" + item + "\">" + item + "</option>";
 }
 }
 showQuestion();
 const togglePrev = () => {
-    const method = questionIndex === 0 ? 'add' : 'remove';
+    const method = !questionIndex ? 'add' : 'remove';
     prevButton.classList[method]("disable");
 }
 const toggleNext = () => {
