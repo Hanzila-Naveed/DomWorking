@@ -29,4 +29,20 @@ div toggleButton {
     background-color: white;
     color: black;
 }
+.next,
+.previous {
+    padding: 15px 10px;
+    border-radius: 6px;
+    background: deepskyblue;
+    color: white;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    width: 100px;
+}
 
+.next.disable,
+.previous.disable {
+    cursor: none;
+    opacity: .5;
+}
