@@ -54,11 +54,11 @@ for(const item of allQuestions[questionIndex].options){
 showQuestion();
 const togglePrev = () => {
     const method = !questionIndex ? 'add' : 'remove';
-    prevButton.classList[method]("disable");
+    prevButton.classList[method]("hide");
 }
 const toggleNext = () => {
     const method = questionIndex === allQuestions.length - 1 ? 'add' : 'remove';
-    nextButton.classList[method]("disable");
+    nextButton.classList[method]("hide");
 }
 const nextQuestion= ()=> {
     if(questionIndex< allQuestions.length-1){
