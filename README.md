@@ -19,9 +19,9 @@ You can open the HTML file in your preferred web browser by double-clicking the 
 ## Project Structure
 The project structure is as follows:
 
-index.html: The main HTML file.
-styles.css (if applicable): CSS styles for the HTML.
-script.js (if applicable): JavaScript code for the HTML (optional).
+1. index.html: The main HTML file.
+2. styles.css (if applicable): CSS styles for the HTML.
+3. script.js (if applicable): JavaScript code for the HTML (optional).
 
 ## Usage
 This HTML project can be used to understand the DOM workings and how Dom works when there is change in state when an event occurs.
