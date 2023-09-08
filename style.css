@@ -44,5 +44,6 @@ div toggleButton {
 .next.disable,
 .previous.disable {
     cursor: none;
+    display: none;
     opacity: .5;
 }
