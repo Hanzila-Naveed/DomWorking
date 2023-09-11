@@ -18,8 +18,10 @@ function toggleSwitchTransformFunction() {
         Switch = true
         toggleSwitchCircle.style.transform = "translateX(100%)"
         document.body.classList.add("dark-mode");
+        toggleButton.style.background = "white";
     } else {
         Switch = false
+        toggleButton.style.background= "black";
         toggleSwitchCircle.style.transform = "translateX(0%)"
         document.body.classList.remove("dark-mode")
     }
