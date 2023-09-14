@@ -6,12 +6,12 @@ const AddElement = () => {
 }
 Add.onclick = () => AddElement(); */
 let Switch = false;
-let toggleButton = document.getElementById("toggle")
-let toggleSwitchCircle = document.getElementById("circle")
-let nextButton = document.getElementById("next");
-let prevButton = document.getElementById("previous");
-let submitButton= document.getElementById("submit")
-let mcqs =document.getElementById("MCQS")
+const toggleButton = document.getElementById("toggle")
+const toggleSwitchCircle = document.getElementById("circle")
+const nextButton = document.getElementById("next");
+const prevButton = document.getElementById("previous");
+const submitButton= document.getElementById("submit")
+const mcqs =document.getElementById("MCQS")
 toggleButton.onclick = () => toggleSwitchTransformFunction();
 function toggleSwitchTransformFunction() {
     if (!Switch) {
@@ -89,7 +89,7 @@ function showQuestion(n) {
     }
     if(questionIndex === slides.length-1){
         nextButton.style.display = 'none';
-        submitButton.style.display = 'inline-flex';
+        Add();
     }
     else{
         nextButton.style.display = 'inline-flex';
@@ -105,8 +105,10 @@ function showPrevious() {
 showQuestion(questionIndex);
 function result(){
     const Answers = document.querySelectorAll('.answer');
-    const result = document.getElementById('myResults')
+    const result = document.getElementById('myResults');
     let score= 0;
+    state.a= true;
+    submitButton.style.display='none';
     allQuestions.forEach( (currentQuestion, questionNumber) => {
         const CorrectAnswer= Answers[questionNumber]
         const selector =`input[name=question${questionNumber}]:checked`;
@@ -119,4 +121,13 @@ function result(){
         }
     });
     result.innerHTML=`${score} out of ${allQuestions.length}`;
+}
+const state={a:false}
+function Add(){
+   if (!state.a){
+       submitButton.style.display= 'inline-flex';
+   }else{
+       state.a= true;
+       submitButton.style.display= 'none';
+   }
 }
