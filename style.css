@@ -18,20 +18,59 @@ toggleSwitchCircle {
     border-radius: 50%;
     transition: 0.5s;
 }
+.wrapper{
+    margin: auto;
+    background-color: aliceblue;
+    padding: 2rem;
+    width: 31rem;
+    height: 29rem;
+    position: relative;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+}
+.btn-group {
+    top: 21rem;
+    position: absolute;
+    display: flex;
+    justify-content: right;
+    width: 89%;
+}
+h4{
+    font-family: "JetBrains Mono";
+    font: caption;
+    font-size: medium;
+}
 
+.answer label,
+input[type="radio"] {
+    display: flex;
+    align-items: stretch;
+    cursor: pointer;
+}
+input[type="radio"] {
+    margin-right: 8px;
+    margin-bottom: 1rem;
+}
 div toggleButton {
     float: right;
 }
-.dark-mode {
+.dark-mode{
     background-color: black;
     color: white;
+}
+.mcqs{
+    background-color: #36454F;
 }
 .body{
     background-color: white;
     color: black;
 }
 .next,
-.previous {
+.previous,
+.submit{
+    margin:5px 0px 5px 0px;
     padding: 15px 10px;
     border-radius: 6px;
     background: deepskyblue;
@@ -39,12 +78,30 @@ div toggleButton {
     border: 0;
     outline: none;
     cursor: pointer;
+    align-items: center;
     width: 100px;
+    justify-content: center;
 }
 
-.next.hide,
-.previous.hide {
-    cursor: none;
-    display: none;
-    opacity: .5;
+.my-results{
+    position: absolute;
+    display: flex;
+    top: 26rem;
+    background-color: #87CEEB;
+    padding: 2rem;
+    width: 27rem;
+    border-radius: 6px;
+    height: 1rem;
+    border: 1px solid darkblue;
+}
+.slide{
+    position: absolute;
+    width: 80%;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+.active-slide{
+    opacity: 1;
+    z-index: 2;
 }
