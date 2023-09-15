@@ -7,16 +7,19 @@ const AddElement = () => {
 Add.onclick = () => AddElement(); */
 // Variables
 let Switch = false;
-const toggleButton = document.getElementById("toggle")
-const toggleSwitchCircle = document.getElementById("circle")
 const nextButton = document.getElementById("next");
 const prevButton = document.getElementById("previous");
 const submitButton= document.getElementById("submit")
-const quizContainer =document.getElementById("quiz-container")
-const state={add:false}
+const toggleButton = document.getElementById("toggle")
+const state={
+    add:false
+}
 let questionIndex = 0;
+
 // Functions
 function toggleSwitchTransformFunction() {
+    const quizContainer =document.getElementById("quiz-container")
+    const toggleSwitchCircle = document.getElementById("circle")
     if (!Switch) {
         Switch = true
         toggleSwitchCircle.style.transform = "translateX(100%)"
