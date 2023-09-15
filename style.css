@@ -67,6 +67,8 @@ div toggleButton {
     background-color: white;
     color: black;
 }
+.yes,
+.no,
 .next,
 .previous,
 .submit{
@@ -82,7 +84,20 @@ div toggleButton {
     width: 100px;
     justify-content: center;
 }
-
+.dialog-box{
+    position: relative;
+    display: none;
+    flex-direction: column;
+    z-index: 3;
+    top: 10rem;
+    left: 3rem;
+    background-color: #87CEEB;
+    padding: 2rem;
+    width: 20rem;
+    border-radius: 6px;
+    height: 4rem;
+    border: 1px solid darkblue;
+}
 .my-results{
     position: absolute;
     display: flex;

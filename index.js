@@ -76,23 +76,34 @@ function showQuestion(n) {
     }
 }
 function result(){
-    const Answers = document.querySelectorAll('.answer');
-    const result = document.getElementById('myResults');
-    let score= 0;
-    state.add= true;
-    submitButton.style.display='none';
-    allQuestions.forEach( (currentQuestion, questionNumber) => {
-        const CorrectAnswer= Answers[questionNumber]
-        const selector =`input[name=question${questionNumber}]:checked`;
-        const userAnswer = (CorrectAnswer.querySelector(selector) || {}).value;
-        if(userAnswer===currentQuestion.answer){
-            score++;
-            Answers[questionNumber].style.color = 'lightgreen';
-        }else{
-            Answers[questionNumber].style.color = 'red';
-        }
-    });
-    result.innerHTML=`${score} out of ${allQuestions.length}`;
+    const dialogBox = document.getElementById("dialogBox");
+    const Yes = document.getElementById("yes");
+    const No = document.getElementById("no")
+    dialogBox.style.display="flex";
+    Yes.onclick = ()=>{
+        const Answers = document.querySelectorAll('.answer');
+        const result = document.getElementById('myResults');
+        let score = 0;
+        state.add = true;
+        submitButton.style.display = 'none';
+        dialogBox.style.display= 'none';
+        allQuestions.forEach((currentQuestion, questionNumber) => {
+            const CorrectAnswer = Answers[questionNumber]
+            const selector = `input[name=question${questionNumber}]:checked`;
+            const userAnswer = (CorrectAnswer.querySelector(selector) || {}).value;
+            if (userAnswer === currentQuestion.answer) {
+                score++;
+                Answers[questionNumber].style.color = 'lightgreen';
+            } else {
+                Answers[questionNumber].style.color = 'red';
+            }
+        });
+        result.innerHTML = `${score} out of ${allQuestions.length}`;
+    }
+    No.onclick =()=>{
+        state.add=false;
+        dialogBox.style.display="none";
+    }
 }
 function AddButton(){
    if (!state.add){
