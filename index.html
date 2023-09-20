@@ -9,40 +9,51 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="toggle-control">
-    <toggleButton id="toggle">
-        <toggleSwitchCircle id="circle"/>
-    </toggleButton>
-</div>
-<!-- <div id="form-control">
-    <form id="Form">
-        <label for="fname">First Name:</label>
-        <input type="text" id="fname" name ="fname">
-        <label for="lname">Last Name:</label>
-        <input type="text" id="lname" name ="lname">
-        <input type= "submit">
-    </form>
-</div>
-<button id="Add">Add</button> -->
+<main>
+    <div class="formContainer" id="form-container">
+        <div class="left">
+            <div class="header">
+                <h2 class="animation a1">Welcome!</h2>
+                <h4 class="animation a2">Enter your First Name and Last name to Start quiz!</h4>
+            </div>
+            <div class="form">
+                <input type="text" id="firstName" class="form-field animation a3" placeholder="First Name" onkeyup="NameValidation('firstName')">
+                <div id="name-id"></div>
+                <input type="text" id="lastName" class="form-field animation a4" placeholder="Last Name" onkeyup="NameValidation('lastName')">
 
-<div class="wrapper" id="quiz-container" >
-    <div id="quiz"></div>
-    <div class="btn-group" id="buttons">
-        <button class="previous" id="previous" onclick="showPrevious()">Previous</button>
-        <button class="submit" id="submit" type="submit" onclick="result()">Submit</button>
-        <button class="next" id="next"  onclick="showNext()">Next</button>
-    </div>
-    <div class="dialog-box" id="dialogBox">
-        <div style="display: flex; align-items: center; justify-content: center; padding-bottom: 1rem">
-            Are you sure you want to Submit the result?
+                <button class="animation a6" id="startQuiz" onclick="Submission()">Start Quiz</button>
+            </div>
         </div>
-    <div style="display: flex; justify-content:space-between">
-        <button class="yes" id="yes">Yes</button>
-        <button class="no" id="no">No</button>
+        <div class="right"></div>
     </div>
+    <div class="container" id="container">
+        <div class="wrapper" id="quiz-container" >
+            <div id="quiz"></div>
+            <div class="btn-group" id="buttons">
+                <button class="previous" id="previous" onclick="showPrevious()">Previous</button>
+                <button class="submit" id="submit" type="submit" onclick="result()">Submit</button>
+                <button class="next" id="next"  onclick="showNext()">Next</button>
+            </div>
+            <div class="dialog-box" id="dialogBox">
+                <div style="display: flex; align-items: center; justify-content: center; padding-bottom: 1rem">
+                    Are you sure you want to Submit the result?
+                </div>
+                <div class="btn-dialog">
+                    <button class="yes" id="yes">Yes</button>
+                    <button class="no" id="no">No</button>
+                </div>
+            </div>
+            <div id="myResults" class="my-results animation a2">My results will appear here</div>
+        </div>
+        <canvas id="drawing_canvas"></canvas>
+        <div class="toggle-control">
+            <toggleButton id="toggle">
+                <toggleSwitchCircle id="circle"/>
+            </toggleButton>
+        </div>
     </div>
-    <div id="myResults" class="my-results">My results will appear here</div>
-</div>
+</main>
+<script src="canvas.js"></script>
 <script src="index.js"></script>
 </body>
 </html>

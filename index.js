@@ -9,8 +9,8 @@ Add.onclick = () => AddElement(); */
 let Switch = false;
 const nextButton = document.getElementById("next");
 const prevButton = document.getElementById("previous");
-const submitButton= document.getElementById("submit")
-const toggleButton = document.getElementById("toggle")
+const submitButton= document.getElementById("submit");
+const toggleButton = document.getElementById("toggle");
 const state={
     add:false
 }
@@ -25,10 +25,10 @@ function toggleSwitchTransformFunction() {
         toggleSwitchCircle.style.transform = "translateX(100%)"
         quizContainer.classList.add("quizContainer")
         document.body.classList.add("dark-mode");
-        toggleButton.style.background = "white";
+        toggleButton.style.background = "black";
     } else {
         Switch = false
-        toggleButton.style.background= "black";
+        toggleButton.style.background= "white";
         quizContainer.classList.remove("quizContainer")
         toggleSwitchCircle.style.transform = "translateX(0%)"
         document.body.classList.remove("dark-mode")
@@ -41,12 +41,13 @@ function Quiz() {
         (currentQuestion, questionNumber) => {
             const answer = [];
             for(const item of currentQuestion.options){
-                answer.push(`<label><input type="radio" name ="question${questionNumber}" value="${item}">${item}</label>`);
+                answer.push(`<label class="label"><input type="radio" name ="question${questionNumber}" value="${item}"><span class="custom-radio-button"></span>${item}</label>`);
             }
+
             output.push(
                 `<div class="slide">
-    <div class="question"><h1> MCQ's for Javascript: <h2> Question # ${currentQuestion.id} of ${allQuestions.length} </h2> <h4>${currentQuestion.question}</h4></h1></div>
-    <div class="answer"> ${answer.join('')} </div>
+    <div class="question animation"><h1> MCQ's for Javascript <h2> Question # ${currentQuestion.id} of ${allQuestions.length} </h2> <h4>${currentQuestion.question}</h4></h1></div>
+    <div class="answer animation"> ${answer.join('')} </div>
     </div>` );
         }
     );
@@ -98,7 +99,11 @@ function result(){
                 Answers[questionNumber].style.color = 'red';
             }
         });
-        result.innerHTML = `${score} out of ${allQuestions.length}`;
+        if(score===allQuestions.length){
+            const canvas= document.getElementById('drawing_canvas');
+            canvas.style.display= 'block';
+        }
+        result.innerHTML = `${fullName.firstName+' '+ fullName.lastName} your score is ${score} out of ${allQuestions.length}`;
     }
     No.onclick =()=>{
         state.add=false;
@@ -106,13 +111,60 @@ function result(){
     }
 }
 function AddButton(){
-   if (!state.add){
-       submitButton.style.display= 'inline-flex';
-   }else{
-       state.add= true;
-       submitButton.style.display= 'none';
-   }
+    if (!state.add){
+        submitButton.style.display= 'inline-flex';
+    }else{
+        state.add= true;
+        submitButton.style.display= 'none';
+    }
 }
+
+function NameValidation(id){
+    const startQuiz= document.getElementById("startQuiz");
+    const Name= document.getElementById(id).value;
+    const NameValidation= document.getElementById("name-id");
+    const select= document.getElementById(id);
+    if(!Name.match( /^[A-Z].*[a-z]$/)){
+        NameValidation.style.display='flex';
+        NameValidation.classList.add('name-validation');
+        NameValidation.innerHTML= 'Password contains alphabets only and must start with a Capital letter';
+        startQuiz.disabled = true;
+        startQuiz.classList.add('nohover')
+        select.style.borderColor= 'red';
+        select.style.color= 'red';
+
+    }else{
+        NameValidation.style.display='none';
+        select.style.borderColor= 'green';
+        select.style.color= 'green';
+        startQuiz.disabled = false;
+    }
+}
+const fullName={};
+const formContainer= document.getElementById('form-container');
+formContainer.classList.add('active')
+function Submission(){
+    const startQuiz= document.getElementById("startQuiz");
+    const firstName= document.getElementById("firstName").value;
+    const lastName= document.getElementById("lastName").value;
+    const name= document.getElementById("name-id")
+    const start= document.getElementById("container");
+    name.innerHTML= 'Please Enter the name';
+    name.style.display='flex';
+    name.classList.add('name-validation');
+    startQuiz.disabled = true;
+    startQuiz.classList.add('nohover')
+    if(firstName && lastName){
+        formContainer.classList.remove('active')
+        start.classList.add('active','animation');
+        startQuiz.disabled= false;
+        name.style.display='none'
+        fullName.firstName= firstName;
+        fullName.lastName= lastName;
+    }
+}
+
+
 //Sample Data
 const allQuestions=[
     {
@@ -149,4 +201,3 @@ function showNext() {
 function showPrevious() {
     showQuestion(questionIndex - 1);
 }
-
