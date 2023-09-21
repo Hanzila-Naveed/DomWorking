@@ -119,15 +119,15 @@ function AddButton(){
     }
 }
 
-function NameValidation(id){
+function validateInput(id,error){
     const startQuiz= document.getElementById("startQuiz");
     const Name= document.getElementById(id).value;
-    const NameValidation= document.getElementById("name-id");
+    const NameValidation= document.getElementById(`${id}Id`);
     const select= document.getElementById(id);
     if(!Name.match( /^[A-Z].*[a-z]$/)){
         NameValidation.style.display='flex';
         NameValidation.classList.add('name-validation');
-        NameValidation.innerHTML= 'Password contains alphabets only and must start with a Capital letter';
+        NameValidation.innerHTML= error;
         startQuiz.disabled = true;
         startQuiz.classList.add('nohover')
         select.style.borderColor= 'red';
@@ -140,6 +140,12 @@ function NameValidation(id){
         startQuiz.disabled = false;
     }
 }
+function NameValidation(id){
+    const errorMessage = 'Name starts with alphabet and then contains letters';
+    validateInput(id, errorMessage)
+}
+
+
 const fullName={};
 const formContainer= document.getElementById('form-container');
 formContainer.classList.add('active')
@@ -147,18 +153,15 @@ function Submission(){
     const startQuiz= document.getElementById("startQuiz");
     const firstName= document.getElementById("firstName").value;
     const lastName= document.getElementById("lastName").value;
-    const name= document.getElementById("name-id")
     const start= document.getElementById("container");
-    name.innerHTML= 'Please Enter the name';
-    name.style.display='flex';
-    name.classList.add('name-validation');
-    startQuiz.disabled = true;
-    startQuiz.classList.add('nohover')
+    const firstNameErrorMessage = 'Please Enter first Name';
+    const lastNameErrorMessage = 'Please Enter last name';
+    validateInput("firstName",firstNameErrorMessage);
+    validateInput("lastName",lastNameErrorMessage);
     if(firstName && lastName){
         formContainer.classList.remove('active')
         start.classList.add('active','animation');
         startQuiz.disabled= false;
-        name.style.display='none'
         fullName.firstName= firstName;
         fullName.lastName= lastName;
     }
