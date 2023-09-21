@@ -189,7 +189,7 @@ toggleSwitchCircle {
         opacity: 1;
         z-index: 2;
     }
-    *{ box-sizing: border-box; }
+
 
 
     body {
@@ -229,14 +229,14 @@ toggleSwitchCircle {
 
     .right {
         flex: 1;
-        background-color: black;
+        background-color: lavenderblush;
         transition: 1s;
-        background-image: url("./images/quiz_app.svg");
-        background-size: cover;
+        background-image: url("./images/Untitled.png");
+        background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
     }
-
+*{ box-sizing: border-box; }
 
 
     .header > h2 {
@@ -385,4 +385,77 @@ toggleSwitchCircle {
     bottom: 0;
     left: 0;
     right: 0;
+}
+@media screen and (max-width: 1020px) {
+    .wrapper {
+        height: 88%;
+    }
+    .slide {
+        position: absolute;
+        width: 81%;
+    }
+    h1,h2,h4{
+        margin-top: 0;
+    }
+    .btn-group{
+        top: 19rem;
+    }
+    .my-results{
+        top: 23rem;
+        width: 85%;
+    }
+    .answer{
+        padding:2px;
+    }
+    .label{
+        margin-bottom: 5px;
+    }
+}
+
+@media screen and (max-width: 981px) {
+    h1,h2,h4{
+        margin-bottom: 5px;
+    }
+    .label{
+        margin-bottom: 3px;
+    }
+    .my-results{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 721px) {
+    h1{
+        font-size: x-large;
+        font-weight:bolder;
+    }
+    h2,h4{
+        font-size: large;
+    }
+    h1,h2,h4{
+        margin-bottom: 2px;
+    }
+    .label{
+        margin-bottom: 3px;
+    }
+    .my-results{
+        width: 77%;
+    }
+}
+@media screen and (max-width: 660px) {
+    h1{
+        font-size: x-large;
+        font-weight:bolder;
+    }
+    h2,h4{
+        font-size: large;
+    }
+    h1,h2,h4{
+        margin-bottom: 2px;
+    }
+    .label{
+        margin-bottom: 3px;
+    }
+    .my-results{
+        width: 77%;
+    }
 }
