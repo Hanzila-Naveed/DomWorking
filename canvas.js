@@ -135,11 +135,10 @@ function initDrawingCanvas() {
     drawingCanvas.width = viewWidth;
     drawingCanvas.height = viewHeight;
     ctx = drawingCanvas.getContext('2d');
-
-    createLoader();
-    createExploader();
     createParticles();
 }
+createLoader();
+createExploader();
 
 function createLoader() {
     loader = new Loader(viewWidth * 0.5, viewHeight * 0.5);
@@ -213,8 +212,6 @@ function loop() {
     else if (phase === 2 && checkParticlesComplete()) {
         // reset
         phase = 0;
-        loader.reset();
-        exploader.reset();
         particles.length = 0;
         createParticles();
     }
