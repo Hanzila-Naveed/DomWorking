@@ -226,7 +226,6 @@ main{
     display: flex;
     height: 100vh;
     position: relative;
-    left: -50%;
     width: 100%;
     box-sizing: border-box;
     left:0
