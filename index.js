@@ -10,6 +10,7 @@ let Switch = false;
 const nextButton = document.getElementById("next");
 const prevButton = document.getElementById("previous");
 const submitButton= document.getElementById("submit");
+const reloadButton= document.getElementById('reload')
 const toggleButton = document.getElementById("toggle");
 const state={
     add:false
@@ -46,8 +47,8 @@ function Quiz() {
 
             output.push(
                 `<div class="slide">
-    <div class="question animation"><h1> MCQ's for Javascript <h2> Question # ${currentQuestion.id} of ${allQuestions.length} </h2> <h4>${currentQuestion.question}</h4></h1></div>
-    <div class="answer animation"> ${answer.join('')} </div>
+    <div class="question animation a1"><h1> MCQ's for Javascript <h2> Question # ${currentQuestion.id} of ${allQuestions.length} </h2> <h4>${currentQuestion.question}</h4></h1></div>
+    <div class="answer animation a1"> ${answer.join('')} </div>
     </div>` );
         }
     );
@@ -74,12 +75,14 @@ function showQuestion(n) {
     else{
         nextButton.style.display = 'inline-flex';
         submitButton.style.display = 'none';
+        reloadButton.style.display= 'none';
     }
 }
 function result(){
     const dialogBox = document.getElementById("dialogBox");
     const Yes = document.getElementById("yes");
-    const No = document.getElementById("no")
+    const No = document.getElementById("no");
+    const active= document.getElementById('quiz')
     dialogBox.style.display="flex";
     Yes.onclick = ()=>{
         const Answers = document.querySelectorAll('.answer');
@@ -88,22 +91,26 @@ function result(){
         state.add = true;
         submitButton.style.display = 'none';
         dialogBox.style.display= 'none';
+        reloadButton.style.display='flex'
         allQuestions.forEach((currentQuestion, questionNumber) => {
             const CorrectAnswer = Answers[questionNumber]
             const selector = `input[name=question${questionNumber}]:checked`;
             const userAnswer = (CorrectAnswer.querySelector(selector) || {}).value;
             if (userAnswer === currentQuestion.answer) {
                 score++;
-                Answers[questionNumber].style.color = 'lightgreen';
-            } else {
-                Answers[questionNumber].style.color = 'red';
+            }else{
+                const selectors = `.label input[name=question${questionNumber}]:checked + .custom-radio-button`
+                const option = document.querySelector(selectors);
+                option.style.background= 'red'
             }
         });
         if(score===allQuestions.length){
             const canvas= document.getElementById('drawing_canvas');
-            canvas.style.display= 'block';
+            canvas.style.display= 'flex';
         }
         result.innerHTML = `${fullName.firstName+' '+ fullName.lastName} your score is ${score} out of ${allQuestions.length}`;
+        active.style.pointerEvents= 'none';
+
     }
     No.onclick =()=>{
         state.add=false;
@@ -113,21 +120,23 @@ function result(){
 function AddButton(){
     if (!state.add){
         submitButton.style.display= 'inline-flex';
+        reloadButton.style.display='none';
     }else{
         state.add= true;
         submitButton.style.display= 'none';
+        reloadButton.style.display='inline-flex';
     }
 }
 
 function validateInput(id,error){
     const startQuiz= document.getElementById("startQuiz");
-    const Name= document.getElementById(id).value;
+    const Name= document.getElementById(id).value.trim();
     const NameValidation= document.getElementById(`${id}Id`);
     const select= document.getElementById(id);
-    if(!Name.match( /^[A-Z].*[a-z]$/)){
+    if(!Name.match(`^(?:[A-Z]+|[A-Z][a-zA-Z]+)$`)){
+        NameValidation.innerHTML = error
         NameValidation.style.display='flex';
         NameValidation.classList.add('name-validation');
-        NameValidation.innerHTML= error;
         startQuiz.disabled = true;
         startQuiz.classList.add('nohover')
         select.style.borderColor= 'red';
@@ -141,32 +150,33 @@ function validateInput(id,error){
     }
 }
 function NameValidation(id){
-    const errorMessage = 'Name starts with alphabet and then contains letters';
+    const errorMessage = 'Please enter a valid name starting with an uppercase letter and containing uppercase and/or lowercase letters';
     validateInput(id, errorMessage)
 }
-
-
 const fullName={};
-const formContainer= document.getElementById('form-container');
-formContainer.classList.add('active')
 function Submission(){
     const startQuiz= document.getElementById("startQuiz");
-    const firstName= document.getElementById("firstName").value;
-    const lastName= document.getElementById("lastName").value;
+    const firstName= document.getElementById("firstName").value.trim();
+    const lastName= document.getElementById("lastName").value.trim();
+    const formContainer= document.getElementById("form-container")
     const start= document.getElementById("container");
     const firstNameErrorMessage = 'Please Enter first Name';
     const lastNameErrorMessage = 'Please Enter last name';
     validateInput("firstName",firstNameErrorMessage);
     validateInput("lastName",lastNameErrorMessage);
     if(firstName && lastName){
-        formContainer.classList.remove('active')
+        formContainer.style.display='none';
         start.classList.add('active','animation');
         startQuiz.disabled= false;
-        fullName.firstName= firstName;
-        fullName.lastName= lastName;
+        fullName.firstName= FormatName(firstName);
+        fullName.lastName= FormatName(lastName);
     }
 }
 
+const FormatName = (name)=>{
+    const Name= name.toLowerCase();
+    return Name.charAt(0).toUpperCase()+Name.slice(1)
+}
 
 //Sample Data
 const allQuestions=[

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main>
+<main class="cover">
     <div class="formContainer" id="form-container">
         <div class="left">
             <div class="header">
@@ -29,10 +29,16 @@
     <div class="container" id="container">
         <div class="wrapper" id="quiz-container" >
             <div id="quiz"></div>
-            <div class="btn-group" id="buttons">
-                <button class="previous" id="previous" onclick="showPrevious()">Previous</button>
-                <button class="submit" id="submit" type="submit" onclick="result()">Submit</button>
-                <button class="next" id="next"  onclick="showNext()">Next</button>
+            <div class="wrap">
+                <div class="btn-group animation a2" id="buttons">
+                    <button class="previous" id="previous" onclick="showPrevious()">Previous</button>
+                    <button class="submit" id="submit" type="submit" onclick="result()">Submit</button>
+                    <button class="next" id="next"  onclick="showNext()">Next</button>
+                    <button class="reload" id="reload" type="button" onClick="window.location.reload()">
+                        Reload Page
+                    </button>
+                </div>
+                <div id="myResults" class="my-results animation a2">My results will appear here</div>
             </div>
             <div class="dialog-box" id="dialogBox">
                 <div style="display: flex; align-items: center; justify-content: center; padding-bottom: 1rem">
@@ -43,10 +49,9 @@
                     <button class="no" id="no">No</button>
                 </div>
             </div>
-            <div id="myResults" class="my-results animation a2">My results will appear here</div>
         </div>
         <canvas id="drawing_canvas"></canvas>
-        <div class="toggle-control">
+        <div class="toggle-control" style="display: inline-flex; position:absolute; right: 0px">
             <toggleButton id="toggle">
                 <toggleSwitchCircle id="circle"/>
             </toggleButton>
