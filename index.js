@@ -21,18 +21,27 @@ let questionIndex = 0;
 function toggleSwitchTransformFunction() {
     const quizContainer =document.getElementById("quiz-container")
     const toggleSwitchCircle = document.getElementById("circle")
+    const main= document.querySelector('main')
+    const buttons = document.querySelectorAll('.reload, .yes, .no, .next, .previous, .submit');
+
     if (!Switch) {
         Switch = true
+        buttons.forEach(button => {
+            button.style.background = 'linear-gradient(to right, grey 0%, #3f3d55 100%)';
+        });
         toggleSwitchCircle.style.transform = "translateX(100%)"
         quizContainer.classList.add("quizContainer")
-        document.body.classList.add("dark-mode");
-        toggleButton.style.background = "black";
+        toggleButton.style.background = "#767ce8";
+        main.classList.add("quizContainer")
     } else {
+        buttons.forEach(button => {
+            button.style.background = '';
+        });
         Switch = false
-        toggleButton.style.background= "white";
+        main.classList.remove("quizContainer")
+        toggleButton.style.background= "lightcoral";
         quizContainer.classList.remove("quizContainer")
         toggleSwitchCircle.style.transform = "translateX(0%)"
-        document.body.classList.remove("dark-mode")
     }
 }
 function Quiz() {
@@ -47,8 +56,8 @@ function Quiz() {
 
             output.push(
                 `<div class="slide">
-    <div class="question animation a1"><h1> MCQ's for Javascript <h2> Question # ${currentQuestion.id} of ${allQuestions.length} </h2> <h4>${currentQuestion.question}</h4></h1></div>
-    <div class="answer animation a1"> ${answer.join('')} </div>
+    <div class="question animation"><h1> MCQ's for Javascript <h2> Question # ${currentQuestion.id} of ${allQuestions.length} </h2> <h4>${currentQuestion.question}</h4></h1></div>
+    <div class="answer animation"> ${answer.join('')} </div>
     </div>` );
         }
     );
@@ -106,7 +115,7 @@ function result(){
         });
         if(score===allQuestions.length){
             const canvas= document.getElementById('drawing_canvas');
-            canvas.style.display= 'flex';
+            canvas.style.display= 'inline-flex';
         }
         result.innerHTML = `${fullName.firstName+' '+ fullName.lastName} your score is ${score} out of ${allQuestions.length}`;
         active.style.pointerEvents= 'none';

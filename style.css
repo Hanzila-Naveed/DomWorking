@@ -5,7 +5,7 @@ toggleButton {
     padding: 2px;
     border: 1px black solid;
     border-radius: 30px;
-    background-color:white;
+    background-color:lightcoral;
     transition: 0.5s;
 }
 
@@ -31,7 +31,6 @@ toggleSwitchCircle {
     text-align: start;
     border: 2px solid #c40094;
     box-shadow: 0 0 20px pink;
-    transition: .4s ease-in;
 }
 .container{
     display: none;
@@ -130,12 +129,10 @@ h4{
 div toggleButton {
     float: right;
 }
-.dark-mode{
-    background-color: black;
-    color: white;
-}
+
 .quizContainer{
-    background-color: #36454F;
+    background: lightcoral;
+    color:black;
 }
 .body{
     background-color: white;
