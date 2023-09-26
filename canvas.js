@@ -8,6 +8,8 @@ var viewWidth = 512,
     ctx,
     timeStep = (1/60);
 
+ var executionCounter=0;
+
 Point = function(x, y) {
     this.x = x || 0;
     this.y = y || 0;
@@ -210,15 +212,19 @@ function loop() {
         phase = 2;
     }
     else if (phase === 2 && checkParticlesComplete()) {
-        // reset
-        phase = 0;
-        particles.length = 0;
-        createParticles();
+        if (executionCounter < 2) {
+            phase = 0;
+            particles.length = 0;
+            createParticles();
+            executionCounter++;
+        } else {
+            return;
+        }
     }
 
-    requestAnimationFrame(loop);
+    requestAnimationFrame(loop)
+    ;
 }
-
 function checkParticlesComplete() {
     for (var i = 0; i < particles.length; i++) {
         if (particles[i].complete === false) return false;
