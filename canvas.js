@@ -212,7 +212,7 @@ function loop() {
         phase = 2;
     }
     else if (phase === 2 && checkParticlesComplete()) {
-        if (executionCounter < 2) {
+        if (executionCounter < 5) {
             phase = 0;
             particles.length = 0;
             createParticles();
